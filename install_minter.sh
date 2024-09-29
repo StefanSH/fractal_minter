@@ -14,17 +14,8 @@ cd cat-token-box
 sudo yarn install
 sudo yarn build
 
-echo "{
-        "network": "fractal-mainnet",
-        "tracker": "http://$1:3000",
-        "dataDir": ".",
-        "maxFeeRate": 3,
-        "rpc": {
-            "url": "http://$1:8332",
-            "username": "bitcoin",
-            "password": "opcatAwesome"
-        }
-      }" > ~/cat-token-box/packages/cli/config.json
+CONFIG_JSON = '{"network":"fractal-mainnet","tracker":"http://%s:3000","dataDir":".","maxFeeRate":3,"rpc":{"url":"http://%s:8332","username":"bitcoin","password":"opcatAwesome"}}'
+printf "$CONFIG_JSON" "$1" "$1" > ~/cat-token-box/packages/cli/config.json
 
 cd ~/cat-token-box/packages/cli/
 echo "Creating wallet..."
